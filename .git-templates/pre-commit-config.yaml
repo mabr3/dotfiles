@@ -1,0 +1,124 @@
+####################################################################
+# Terraform
+####################################################################
+
+repos:
+  # - repo: https://github.com/terraform-docs/terraform-docs
+  #   rev: "v0.18.0"
+  #   hooks:
+  #     - id: terraform-docs-go
+        # args: ["markdown", "table", "--output-file", "README.md"]
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.92.1
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+      # - id: tfupdate
+      - id: terraform_docs
+        args:
+          - '--args=--lockfile=false'
+      - id: terraform_tflint
+        args:
+          - '--args=--no-module'
+          - '--args=--only=terraform_comment_syntax'
+          - '--args=--only=terraform_deprecated_index'
+          - '--args=--only=terraform_deprecated_interpolation'
+          - '--args=--only=terraform_documented_outputs'
+          - '--args=--only=terraform_documented_variables'
+          - '--args=--only=terraform_module_pinned_source'
+          - '--args=--only=terraform_module_version'
+          - '--args=--only=terraform_naming_convention'
+          - '--args=--only=terraform_required_providers'
+          - '--args=--only=terraform_required_version'
+          # - '--args=--only=terraform_standard_module_structure'
+          - '--args=--only=terraform_typed_variables'
+          - '--args=--only=terraform_unused_declarations'
+          - '--args=--only=terraform_unused_required_providers'
+          - '--args=--only=terraform_workspace_remote'
+      # - id: terraform_trivy
+      #   args:
+      #     - '--skip-dirs="**/.terraform"'
+####################################################################
+# Python
+####################################################################
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.5.6
+    hooks:
+    - id: ruff
+      args: [ --fix, --exit-non-zero-on-fix ]
+  # - repo: https://github.com/psf/black
+  #   rev: 23.9.1
+  #   hooks:
+  #   - id: black
+  # - repo: https://github.com/pycqa/flake8
+  #   rev: 6.1.0
+  #   hooks:
+  #   - id: flake8
+  #     args: # arguments to configure flake8
+  #       # making isort line length compatible with black
+  #       - "--max-line-length=120"
+  #       - "--max-complexity=18"
+  # - repo: https://github.com/PyCQA/isort
+  #   rev: 5.12.0
+  #   hooks:
+  #   - id: isort
+  #     args: ["--profile", "black", "--filter-files"]
+  # - repo: https://github.com/econchick/interrogate
+  #   rev: 1.5.0
+  #   hooks:
+  #   - id: interrogate
+      # args: [-vv, -i, --fail-under=20]
+##################################################################
+# Pipeline
+####################################################################
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.29.1
+    hooks:
+    - id: check-azure-pipelines
+      files: ^azure-pipelines.*.yml$
+    - id: check-gitlab-ci
+      # files: ^.gitlab-ci.yaml$
+#####################################################################
+# Docker
+####################################################################
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.13.0-beta
+    hooks:
+      - id: hadolint
+#####################################################################
+# Secrets
+#####################################################################
+  - repo: https://github.com/sirwart/ripsecrets
+    rev: v0.1.8  # Use latest tag on GitHub
+    hooks:
+    -   id: ripsecrets
+####################################################################
+# Generic
+####################################################################
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: no-commit-to-branch
+        args: [--branch, main, --branch, master, --branch, development]
+    -   id: check-ast
+    -   id: check-builtin-literals
+    # -   id: check-case-conflict
+    -   id: check-docstring-first
+    -   id: check-executables-have-shebangs
+    -   id: check-json
+    -   id: check-yaml
+    -   id: check-merge-conflict
+    -   id: debug-statements
+    -   id: detect-private-key
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: mixed-line-ending
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.23 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+    hooks:
+    -  id: shellcheck
+###################################################################
+# End
+####################################################################
+

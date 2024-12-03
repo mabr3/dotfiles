@@ -20,7 +20,12 @@ brew "tfsec"
 brew "tfupdate"
 brew "tmux"
 brew "neovim"
+brew "felixkratz/formulae/borders"
 brew "felixkratz/formulae/sketchybar"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+
+
 cask "alacritty"
 cask "obsidian"
 cask "arc"

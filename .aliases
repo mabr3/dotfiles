@@ -1,0 +1,17 @@
+
+# General
+alias dotfiles='GIT_DIR=$HOME/.dotfiles/ GIT_WORK_TREE=$HOME git'
+alias nv='nvim'
+
+# Git
+alias ga='git add'
+alias gcmsg='git commit -m'
+alias gl='git pull'
+alias gp='git push'
+alias gst='git status'
+
+
+# Config files
+alias yabaiconf='nv ~/.config/yabai/.yabairc'
+alias skhdconf='nv ~/.config/skhd/skhd.rc'
+alias aliasconf='nv ~/.alias'
